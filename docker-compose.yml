@@ -1,0 +1,18 @@
+version: '3'
+services:
+    php:
+        build: php
+        links:
+          - postgre
+    apache:
+        build: apache
+        ports:
+          - 8383:80
+        links:
+          - postgre
+    postgre:
+        image: postgres:alpine
+        environment:
+            - POSTGRES_DB=drupal_test
+            - POSTGRES_USER=drupal_test
+            - POSTGRES_PASSWORD=drupal_test
